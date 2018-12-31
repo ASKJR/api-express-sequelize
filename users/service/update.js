@@ -2,8 +2,11 @@ const User = require('../../models/user');
 
 const service = (req, res) => {
     const { id } = req.params;
-    const input = req.body;
-
+    
+    if (!id || !Object.keys(req.body).length || !req.body) {
+        return res.sendStatus(400);
+    }
+    console.log(req.body,id);
     User.findById(id)
         .then(user => {
             if (!user) {
@@ -13,7 +16,7 @@ const service = (req, res) => {
                 });    
             }
 
-            user.update(input)
+            user.update(req.body)
                 .then(() => {
                     return res.status(200).json({
                         status: true,

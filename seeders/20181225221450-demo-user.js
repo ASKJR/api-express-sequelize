@@ -20,7 +20,7 @@ const randomData = (rows) => {
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Users', randomData(10), {});
+    return queryInterface.bulkInsert('Users', randomData(100), {});
   },
 
   down: (queryInterface, Sequelize) => {

@@ -1,8 +1,12 @@
 const User = require('../../models/user');
 
 const service = (req, res) => {
-    let input = req.body;
-    User.create(input)
+
+    if ( !Object.keys(req.body).length || !req.body) {
+        return res.sendStatus(400);
+    }
+    
+    User.create(req.body)
         .then(user => {
             if (!user) {
                 res.status(404).json({

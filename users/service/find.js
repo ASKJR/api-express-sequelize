@@ -8,7 +8,12 @@ const service = (req, res) => {
         users = User.findById(id);
     } else {
         //get all users
-        users = User.findAll();     
+        users = User.findAll({
+            order: [
+                ['firstName', 'ASC'],
+                ['lastName', 'ASC']
+            ]
+        });     
     }
 
     users
